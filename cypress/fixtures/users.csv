@@ -1,4 +1,4 @@
-firstname,lastname,email,password,address1,city,state,zipCode
-afnan,abbas,afnantest2@gmail.com,,Sample Address ,Texas City,Texas,52008
-ali,user,aliuser@gmail.com,,Sample Address ,Texas City,Texas,52008
-user,test,usertest@gmail.com,,Sample Address ,Texas City,Texas,52008
+firstname,lastname,email,password,address1,city,state,zipCode,number
+afnan,abbas,afnantest2@gmail.com,,Sample Address ,Texas City,Texas,52008,3213220100
+ali,user,aliuser@gmail.com,,Sample Address ,Texas City,Texas,52008,3213220101
+user,test,usertest@gmail.com,,Sample Address ,Texas City,Texas,52008,3213220102

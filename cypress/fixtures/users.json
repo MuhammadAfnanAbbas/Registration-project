@@ -1,32 +1,35 @@
 [
-    {
-        "firstname": "afnan",
-        "lastname": "abbas",
-        "email": "afnantest2@gmail.com",
-        "password": "Pakistan786$123#000",
-        "address1": "Sample Address ",
-        "city": "Texas City",
-        "state": "TX",
-        "zipCode": 52008
-    },
-    {
-        "firstname": "ali",
-        "lastname": "user",
-        "email": "aliuser@gmail.com",
-        "password": "Pakistan786$123#000",
-        "address1": "Sample Address ",
-        "city": "Texas City",
-        "state": "TX",
-        "zipCode": 52008
-    },
-    {
-        "firstname": "user",
-        "lastname": "test",
-        "email": "usertest@gmail.com",
-        "password": "Pakistan786$123#000",
-        "address1": "Sample Address ",
-        "city": "Texas City",
-        "state": "TX",
-        "zipCode": 52008
-    }
+  {
+    "firstname": "afnan",
+    "lastname": "abbas",
+    "email": "afnantest2@gmail.com",
+    "password": "Pakistan123#786#007",
+    "address1": "Sample Address ",
+    "city": "Texas City",
+    "state": "Texas",
+    "zipCode": 52008,
+    "number": 3213220100
+  },
+  {
+    "firstname": "ali",
+    "lastname": "user",
+    "email": "aliuser@gmail.com",
+    "password": "Pakistan123#786#007",
+    "address1": "Sample Address ",
+    "city": "Texas City",
+    "state": "Texas",
+    "zipCode": 52008,
+    "number": 3213220101
+  },
+  {
+    "firstname": "user",
+    "lastname": "test",
+    "email": "usertest@gmail.com",
+    "password": "Pakistan123#786#007",
+    "address1": "Sample Address ",
+    "city": "Texas City",
+    "state": "Texas",
+    "zipCode": 52008,
+    "number": 3213220102
+  }
 ]

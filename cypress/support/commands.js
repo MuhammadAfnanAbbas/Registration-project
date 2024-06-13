@@ -105,13 +105,58 @@ Cypress.Commands.add('SignupatOmni', (user) => {
     });
     cy.reload()
     cy.wait(2000)
-    // cy.get('input#field-first-name').type(user.firstname);
-    // cy.get('input#field-last-name').type(user.lastname);
-    // cy.get('input#field-postal').type(user.zipCode)
-    // cy.get('input#field-email').type(user.email);
-    // cy.get('input#field-password').type(user.password);
-    // cy.get('input#field-password-confirmation').type(user.password);
-    //cy.get('button#enroll-join').click(); Join button is disabled for now - in testing
+    cy.get('input#first-name').type(user.firstname);
+    cy.get('input#last-name').type(user.lastname);
+    cy.get('input#email').type(user.email);
+    cy.get('input#new-password').type(user.password);
+    cy.get('input#password-check').type(user.password);
+    cy.get('#mobile-prefix', { timeout: 10000 })
+      .should('be.visible')
+      .then((select) => {
+        cy.wrap(select)
+          .find('option[value="+1"][data-country="US"]')
+          .then(option => {
+            if (option.length) {
+              option.prop('selected', true);
+              cy.wrap(select).trigger('change');
+            } else {
+              cy.log('Option +1 US not found'); 
+            }
+          });
+      });
+    cy.get('#mobile').type(user.number, { force: true });
+    //cy.get('button#submit-signup-form').click(); Join button is disabled for now - in testing
+    cy.get('input#privacy-policy').check({force:true})
     cy.wait(5000)
-    //cy.url().should('eq', 'https://www.marriott.com/loyalty/myAccount/profile.mi') commented out because in testing
+})
+
+Cypress.Commands.add('SignupatHilton', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.hilton.com/en/hilton-honors/join/', {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        },
+        failOnStatusCode: false
+    });
+    cy.reload()
+    cy.wait(2000)
+    cy.get('input[name = "name.firstName"]').type(user.firstname);
+    cy.get('input[name = "name.lastName"]').type(user.lastname);
+    cy.get('input#email').type(user.email);
+    cy.get('.flex > input.form-input[name="phone.phoneNumber"]').eq(1).type(user.number);
+    cy.get('input[name="email.emailAddress"]').type(user.password);
+    cy.get('input[name="address.addressLine1"]').type(user.address1);
+    //cy.get('button#submit-signup-form').click(); Join button is disabled for now - in testing
+    cy.get('input[name="address.postalCode"]').type(user.zipCode)
+    cy.get('input[name="password"]').type(user.password)
+    cy.get('input[name="password"]').type(user.password)
+    cy.wait(5000)
 })
