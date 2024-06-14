@@ -1,6 +1,10 @@
 {
-    "site2.com": "SignupatIhg",
-    "site3.com": "SignupatStarwood",
-    "site4.com": "SignupatOmni",
-    "site5.com": "SignupatHilton"
+    "IHG Hotels": "SignupatIhg",
+    "Starwood": "SignupatStarwood",
+    "Omni": "SignupatOmni",
+    "Hilton": "SignupatHilton",
+    "Marriot Bonvoy": "SignupatMarriottBonvoy",
+    "Wyndham Rewards": "SignupatWyndhamRewards",
+    "Sonesta": "SignupatSonesta",
+    "movie bowl": "SignupatMovieBowl"
 }

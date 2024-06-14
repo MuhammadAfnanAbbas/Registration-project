@@ -160,3 +160,119 @@ Cypress.Commands.add('SignupatHilton', (user) => {
     cy.get('input[name="password"]').type(user.password)
     cy.wait(5000)
 })
+
+Cypress.Commands.add('SignupatMarriottBonvoy', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.marriott.com/loyalty/createAccount/createAccountPage1.mi', {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        },
+        failOnStatusCode: false
+    });
+    cy.reload()
+    cy.wait(2000)
+    cy.get('#field-first-name').type(user.firstname);
+    cy.get('#field-last-name').type(user.lastname);
+    cy.get('#field-email').type(user.email);
+    cy.get('#field-postal').type(user.zipCode)
+    cy.get('#field-password').type(user.password)
+    cy.get('#field-password-confirmation').type(user.password)
+    //cy.get('.js-submit-button').click() - submit button
+    cy.wait(5000)
+})
+Cypress.Commands.add('SignupatWyndhamRewards', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.wyndhamhotels.com/wyndham-rewards/join', {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        },
+        failOnStatusCode: false
+    });
+    cy.reload()
+    cy.wait(2000)
+    const fullNumber = `1${user.number}`;  // Add '+1' before the number
+    cy.get('input[name="firstName"]').type(user.firstname, {force:true});
+    cy.get('input[name="lastName"]').type(user.lastname, {force:true});
+    cy.get('#country0').select('US', { force: true });
+    cy.get('input#emailAddress').type(user.email, {force:true});
+    cy.get('input#phoneNumber0').type(fullNumber, {force:true})
+    cy.get('input#zipCode0').type(user.zipCode), {force:true}
+    cy.get('input#password').type(user.password, {force:true})
+    cy.get('input#confirmPassword').type(user.password, {force:true})
+    //cy.get('button.submit').click({force:true}) - submit button
+    cy.wait(5000)
+})
+
+Cypress.Commands.add('SignupatSonesta', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.sonesta.com/join-travel-pass', {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        },
+        failOnStatusCode: false
+    });
+    cy.reload()
+    cy.wait(2000)
+    const fullNumber = `1${user.number}`;  // Add '+1' before the number
+    cy.get('input#email').type(user.email);
+    cy.get('input#firstname').type(user.firstname);
+    cy.get('input#lastname').type(user.lastname);
+    cy.get('#submit-enrollment-form').click() //submit button.
+    cy.wait(5000)
+})
+Cypress.Commands.add('SignupatMovieBowl', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.moviebowlgrille.com/loyalty-sign-up', {
+        headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+          },
+        failOnStatusCode: false
+    });
+    //cy.reload()
+    cy.wait(2000)
+    let dob = user.dob
+    const [month, day, year] = dob.split('/');
+    const fullNumber = `1${user.number}`;  // Add '+1' before the number
+    cy.get('#InputModel_Email').type(user.email)
+    cy.get('#InputModel_FirstName').type(user.firstname);
+    cy.get('#InputModel_LastName').type(user.lastname);
+    cy.get('#InputModel_Address1').type(user.address1);
+    cy.get('#InputModel_City').type(user.city);
+    cy.get('#InputModel_State').type(user.state);
+    cy.get('#InputModel_ZipCode').type(user.zipCode)
+    cy.get('#InputModel_Password').type(user.password);
+    cy.get('#InputModel_ConfirmPassword').type(user.password);
+    //cy.get('#signup-submit').click(); // disabled in testing
+    cy.wait(5000)
+})

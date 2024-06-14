@@ -8,7 +8,8 @@
     "city": "Texas City",
     "state": "Texas",
     "zipCode": 52008,
-    "number": 3213220100
+    "number": 3213220100,
+    "dob": "09/09/1996"
   },
   {
     "firstname": "ali",
@@ -19,7 +20,8 @@
     "city": "Texas City",
     "state": "Texas",
     "zipCode": 52008,
-    "number": 3213220101
+    "number": 3213220101,
+    "dob": "09/09/1996"
   },
   {
     "firstname": "user",
@@ -30,6 +32,8 @@
     "city": "Texas City",
     "state": "Texas",
     "zipCode": 52008,
-    "number": 3213220102
+    "number": 3213220102,
+    "dob": "09/09/1996"
+
   }
 ]
