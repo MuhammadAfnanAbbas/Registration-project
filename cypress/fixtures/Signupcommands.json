@@ -4,7 +4,8 @@
     "Omni": "SignupatOmni",
     "Hilton": "SignupatHilton",
     "Marriot Bonvoy": "SignupatMarriottBonvoy",
-    "Wyndham Rewards": "SignupatWyndhamRewards",
-    "Sonesta": "SignupatSonesta",
-    "movie bowl": "SignupatMovieBowl"
+    "Wyndham Rewards":"SignupatWyndhamRewards",
+    "Sonesta":"SignupatSonesta",
+    "Movie Bowl":"SignupatMovieBowl",
+    "Star Light":"SignupatStrarlight"
 }

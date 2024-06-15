@@ -261,9 +261,6 @@ Cypress.Commands.add('SignupatMovieBowl', (user) => {
     });
     //cy.reload()
     cy.wait(2000)
-    let dob = user.dob
-    const [month, day, year] = dob.split('/');
-    const fullNumber = `1${user.number}`;  // Add '+1' before the number
     cy.get('#InputModel_Email').type(user.email)
     cy.get('#InputModel_FirstName').type(user.firstname);
     cy.get('#InputModel_LastName').type(user.lastname);
@@ -274,5 +271,43 @@ Cypress.Commands.add('SignupatMovieBowl', (user) => {
     cy.get('#InputModel_Password').type(user.password);
     cy.get('#InputModel_ConfirmPassword').type(user.password);
     //cy.get('#signup-submit').click(); // disabled in testing
+    cy.wait(5000)
+})
+Cypress.Commands.add('SignupatStrarlight', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    function convertDate(inputDate) {
+        const [month, day, year] = inputDate.split('/');
+        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    }
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.starlightcinemas.com', {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        },
+        failOnStatusCode: false
+    });
+    cy.wait(5000)
+    const dateInput = user.dob;
+    const formattedDate = convertDate(dateInput);
+    cy.get('div[aria-label="loyalty access"][role="button"]').eq(1).click({force:true});
+    cy.get('.css-b56dch').click()
+    cy.wait(1000);
+    cy.get('.css-g2ptcc').click();
+    cy.wait(5000);
+    cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-firstname').type(user.firstname);
+    cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-lastname').type(user.lastname);
+    cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-date-of-birth').type(formattedDate);
+    cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-email').type(user.email);
+    cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-phone-number').type(user.number);
+    cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-password').type(user.password);
+    cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-confirm-password').type(user.password);
+    cy.get(':nth-child(2) > .css-1i379za > .css-7e8jed').click();
+    //cy.get('.css-1d1sq21').click() //disable in testing
     cy.wait(5000)
 })
