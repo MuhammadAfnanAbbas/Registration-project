@@ -311,3 +311,35 @@ Cypress.Commands.add('SignupatStrarlight', (user) => {
     //cy.get('.css-1d1sq21').click() //disable in testing
     cy.wait(5000)
 })
+
+Cypress.Commands.add('SignupatMcdonalds', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.mcdonalds.com/us/en-us/mcdonalds-email-signup.html', {
+        headers: {
+            'accept': '*/*',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept-language': 'en-US,en;q=0.9',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'sec-ch-ua': '"Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+        },
+        failOnStatusCode: false
+    });
+    cy.wait(5000)
+    cy.get('input[id="txt-form-text-12661466"]').type(user.email)
+    cy.wait(2000);
+    cy.get('input[id="txt-form-text-554068101"]').type(user.zipCode)
+    cy.wait(5000)
+    //cy.get('button[data-submit="Sign Up"]').click() submit button commented out
+    cy.wait(5000);
+})
