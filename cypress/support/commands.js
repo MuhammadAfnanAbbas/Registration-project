@@ -343,3 +343,91 @@ Cypress.Commands.add('SignupatMcdonalds', (user) => {
     //cy.get('button[data-submit="Sign Up"]').click() submit button commented out
     cy.wait(5000);
 })
+
+Cypress.Commands.add('SignupatMacys', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.macys.com/account/createaccount?cm_sp=my_account-_-sign_in-_-create_account', {
+        headers: {
+            'accept': '*/*',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept-language': 'en-US,en;q=0.9',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'sec-ch-ua': '"Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+        },
+        failOnStatusCode: false
+    });
+    const dob = user.dob;
+    const [month, day, year] = dob.split('/');
+    cy.wait(5000)
+    cy.get('input#ca-profile-firstname').type(user.firstname);
+    cy.wait(2000);
+    cy.get('input#ca-profile-lastname').type(user.lastname)
+    cy.wait(2000);
+    cy.get('input#ca-profile-email').type(user.email)
+    cy.wait(2000);
+    cy.get('input#ca-profile-password').type(user.password)
+    cy.wait(2000);
+    cy.get('#ca-profile-birth-month').select(month);
+
+    // Set the birth day
+    cy.get('#ca-profile-birth-day').select(day.padStart(2, '0')); // Ensures the day is two digits
+    cy.get('input#ca-profile-star-rewards').check();
+    cy.wait(3000);
+    cy.get('#ca-profile-star-rewards-phone').type(user.number)
+    //cy.get('#ca-profile-submit').click() for submit
+    cy.wait(5000);
+})
+
+Cypress.Commands.add('SignupatRalphLauren', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.ralphlauren.com/register', {
+        headers: {
+            'accept': '*/*',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept-language': 'en-US,en;q=0.9',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'sec-ch-ua': '"Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+        },
+        failOnStatusCode: false
+    });
+    const dob = user.dob;
+    const [month, day, year] = dob.split('/');
+    cy.wait(5000)
+    cy.get('input#dwfrm_profile_customer_email').type(user.email);
+    cy.wait(2000);
+    cy.get('input#dwfrm_profile_login_password_d0yiygmuduce').type(user.password)
+    cy.wait(2000);
+    cy.get('input#dwfrm_profile_login_passwordconfirm_d0kcsgkfhxat').type(user.password)
+    cy.wait(2000);
+    cy.get('input#dwfrm_profile_customer_firstname').type(user.firstname)
+    cy.wait(2000);
+    cy.get('input#dwfrm_profile_customer_lastname').select(user.lastname);
+
+    // Set the birth day
+    cy.get('#ca-profile-birth-day').select(day.padStart(2, '0')); // Ensures the day is two digits
+    //cy.get('button[data-submit="Sign Up"]').click() submit button commented out
+    cy.wait(5000);
+})
+
