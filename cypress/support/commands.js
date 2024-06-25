@@ -389,7 +389,8 @@ Cypress.Commands.add('SignupatMacys', (user) => {
     cy.wait(5000);
 })
 
-Cypress.Commands.add('SignupatRalphLauren', (user) => {
+
+Cypress.Commands.add('SignupatShien', (user) => {
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false;
     });
@@ -397,7 +398,7 @@ Cypress.Commands.add('SignupatRalphLauren', (user) => {
     cy.clearCookies();
     cy.clearLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit('https://www.ralphlauren.com/register', {
+    cy.visit('https://us.shein.com/user/auth/login?direction=navt', {
         headers: {
             'accept': '*/*',
             'accept-encoding': 'gzip, deflate, br, zstd',
@@ -412,22 +413,51 @@ Cypress.Commands.add('SignupatRalphLauren', (user) => {
         },
         failOnStatusCode: false
     });
-    const dob = user.dob;
-    const [month, day, year] = dob.split('/');
     cy.wait(5000)
-    cy.get('input#dwfrm_profile_customer_email').type(user.email);
+    cy.get('input.sui-input__inner[aria-label="Email Address:"]').type(user.email)
+    cy.get('button.page__login_mainButton').click();
+    cy.wait(4000);
+    cy.get('.main-content >.page__login-newUI-input >.input_filed-text >.sui-input >input.sui-input__inner[type="password"]').type(user.password)
     cy.wait(2000);
-    cy.get('input#dwfrm_profile_login_password_d0yiygmuduce').type(user.password)
-    cy.wait(2000);
-    cy.get('input#dwfrm_profile_login_passwordconfirm_d0kcsgkfhxat').type(user.password)
-    cy.wait(2000);
-    cy.get('input#dwfrm_profile_customer_firstname').type(user.firstname)
-    cy.wait(2000);
-    cy.get('input#dwfrm_profile_customer_lastname').select(user.lastname);
+    cy.get('p[data-scene="1"] .sui-checkbox__origin-input').check({force:true});
+    //cy.get('.actions> .login-point_button >.page__login_mainButton').eq(2).click() For submission
+    cy.wait(5000);
+    //cy.get('.skip > span').click() for skipping the phone number step
+    cy.wait(5000);
+})
 
-    // Set the birth day
-    cy.get('#ca-profile-birth-day').select(day.padStart(2, '0')); // Ensures the day is two digits
-    //cy.get('button[data-submit="Sign Up"]').click() submit button commented out
+
+Cypress.Commands.add('SignupatFashionovaa', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.fashionnova.com/', {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        },
+        failOnStatusCode: false
+    });
+    cy.wait(8000)
+    cy.get('.recommendation-modal__close-button').click()
+    cy.wait(2000);
+    cy.get('li > .account__link').click()
+    cy.wait(2000);
+    cy.get('input#RegisterForm-email').type(user.email)
+    cy.wait(2000);
+    cy.get('.continue-button').click();
+    cy.wait(2000);
+    cy.get('input#RegisterForm-FirstName').type(user.firstname)
+    cy.wait(2000);
+    cy.get('input#RegisterForm-LastName').type(user.lastname)
+    cy.wait(2000);
+    cy.get('input#sign-up-password').type(user.password)
+    cy.wait(2000);
+    //cy.get('#sign-up-form-submit-button').click() for submit
     cy.wait(5000);
 })
 
