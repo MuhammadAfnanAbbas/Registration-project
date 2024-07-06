@@ -9,6 +9,7 @@
     "state": "Texas",
     "zipCode": 52008,
     "number": 3213220100,
+    "country": "United States",
     "dob": "09/09/1996"
   },
   {
@@ -21,6 +22,7 @@
     "state": "Texas",
     "zipCode": 52008,
     "number": 3213220101,
+    "country": "United States",
     "dob": "09/09/1996"
   },
   {
@@ -33,6 +35,7 @@
     "state": "Texas",
     "zipCode": 52008,
     "number": 3213220102,
+    "country": "United States",
     "dob": "09/09/1996"
 
   }

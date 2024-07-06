@@ -1,28 +1,3 @@
-// Cypress.Commands.add('SignupatHayat', (user) => {
-//     cy.visit('https://www.hyatt.com/en-US/member/enroll', {
-//         headers: {
-//             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
-//             "Referer": "https://www.hyatt.com"
-//         },
-//         failOnStatusCode: false
-//     });
-//     cy.wait(2000)
-//     cy.get('#input[name="firstName"]').type(user.firstname);
-//     cy.get('#input[name="lastName"]').type(user.lastname);
-//     cy.get('#input[name="email"]').type(user.email);
-//     cy.get('#input[type="password"]').type(user.password);
-//     cy.get('button.submit-btn').click();
-//     cy.wait(5000)
-// });
-// Cypress.Commands.add('SignupatChoice', (user) => {
-//     cy.visit('https://www.hyatt.com/en-US/member/enroll');
-//     cy.get('#input[name="firstName"]').type(user.firstname);
-//     cy.get('#input[name="lastName"]').type(user.lastname);
-//     cy.get('#input[name="email"]').type(user.email);
-//     cy.get('#input[type="password"]').type(user.password);
-//     cy.get('button.submit-btn').click();
-//     cy.wait(5000)
-// });
 import 'cypress-wait-until';
 
 Cypress.Commands.add('SignupatIhg', (user) => {
@@ -53,7 +28,7 @@ Cypress.Commands.add('SignupatIhg', (user) => {
         cy.get('#stateList').select(user.state)
         cy.get('#zipCode').type(user.zipCode);
         cy.get('.filterCheckboxRect').click({multiple:true})
-        //cy.get('form').contains('Join Now').click(); Join button is disabled for now - in testing
+        cy.get('form').contains('Join Now').click(); //Join button is disabled for now - in testing
         cy.wait(5000)
     })
 });
@@ -82,7 +57,7 @@ Cypress.Commands.add('SignupatStarwood', (user) => {
     cy.get('input#field-email').type(user.email);
     cy.get('input#field-password').type(user.password);
     cy.get('input#field-password-confirmation').type(user.password);
-    //cy.get('button#enroll-join').click(); Join button is disabled for now - in testing
+    cy.get('button#enroll-join').click() //Join button is disabled for now - in testing
     cy.wait(5000)
     //cy.url().should('eq', 'https://www.marriott.com/loyalty/myAccount/profile.mi') commented out because in testing
 })
@@ -125,7 +100,7 @@ Cypress.Commands.add('SignupatOmni', (user) => {
           });
       });
     cy.get('#mobile').type(user.number, { force: true });
-    //cy.get('button#submit-signup-form').click(); Join button is disabled for now - in testing
+    cy.get('button#submit-signup-form').click(); //Join button is disabled for now - in testing
     cy.get('input#privacy-policy').check({force:true})
     cy.wait(5000)
 })
@@ -154,10 +129,10 @@ Cypress.Commands.add('SignupatHilton', (user) => {
     cy.get('.flex > input.form-input[name="phone.phoneNumber"]').eq(1).type(user.number);
     cy.get('input[name="email.emailAddress"]').type(user.password);
     cy.get('input[name="address.addressLine1"]').type(user.address1);
-    //cy.get('button#submit-signup-form').click(); Join button is disabled for now - in testing
     cy.get('input[name="address.postalCode"]').type(user.zipCode)
     cy.get('input[name="password"]').type(user.password)
     cy.get('input[name="password"]').type(user.password)
+    cy.get('.btn-primary').click() //for join
     cy.wait(5000)
 })
 
@@ -185,7 +160,7 @@ Cypress.Commands.add('SignupatMarriottBonvoy', (user) => {
     cy.get('#field-postal').type(user.zipCode)
     cy.get('#field-password').type(user.password)
     cy.get('#field-password-confirmation').type(user.password)
-    //cy.get('.js-submit-button').click() - submit button
+    cy.get('.js-submit-button').click() //- submit button
     cy.wait(5000)
 })
 Cypress.Commands.add('SignupatWyndhamRewards', (user) => {
@@ -215,7 +190,7 @@ Cypress.Commands.add('SignupatWyndhamRewards', (user) => {
     cy.get('input#zipCode0').type(user.zipCode), {force:true}
     cy.get('input#password').type(user.password, {force:true})
     cy.get('input#confirmPassword').type(user.password, {force:true})
-    //cy.get('button.submit').click({force:true}) - submit button
+    cy.get('button.submit').click({force:true}) //- submit button
     cy.wait(5000)
 })
 
@@ -270,7 +245,7 @@ Cypress.Commands.add('SignupatMovieBowl', (user) => {
     cy.get('#InputModel_ZipCode').type(user.zipCode)
     cy.get('#InputModel_Password').type(user.password);
     cy.get('#InputModel_ConfirmPassword').type(user.password);
-    //cy.get('#signup-submit').click(); // disabled in testing
+    cy.get('#signup-submit').click(); // disabled in testing signup
     cy.wait(5000)
 })
 Cypress.Commands.add('SignupatStrarlight', (user) => {
@@ -308,7 +283,7 @@ Cypress.Commands.add('SignupatStrarlight', (user) => {
     cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-password').type(user.password);
     cy.get('input#V2Vic2l0ZU1hbmFnZXJXaWRnZXQ6NWNiZTA4MzEtNmZmYy00NGU1LWJlZTktYWQ2NzI0ZDM0ODlj-loyalty-confirm-password').type(user.password);
     cy.get(':nth-child(2) > .css-1i379za > .css-7e8jed').click();
-    //cy.get('.css-1d1sq21').click() //disable in testing
+    cy.get('.css-1d1sq21').click() //disable in testing
     cy.wait(5000)
 })
 
@@ -340,7 +315,7 @@ Cypress.Commands.add('SignupatMcdonalds', (user) => {
     cy.wait(2000);
     cy.get('input[id="txt-form-text-554068101"]').type(user.zipCode)
     cy.wait(5000)
-    //cy.get('button[data-submit="Sign Up"]').click() submit button commented out
+    cy.get('button[data-submit="Sign Up"]').click() //submit button commented out
     cy.wait(5000);
 })
 
@@ -385,7 +360,7 @@ Cypress.Commands.add('SignupatMacys', (user) => {
     cy.get('input#ca-profile-star-rewards').check();
     cy.wait(3000);
     cy.get('#ca-profile-star-rewards-phone').type(user.number)
-    //cy.get('#ca-profile-submit').click() for submit
+    cy.get('#ca-profile-submit').click() //for submit
     cy.wait(5000);
 })
 
@@ -420,7 +395,7 @@ Cypress.Commands.add('SignupatShien', (user) => {
     cy.get('.main-content >.page__login-newUI-input >.input_filed-text >.sui-input >input.sui-input__inner[type="password"]').type(user.password)
     cy.wait(2000);
     cy.get('p[data-scene="1"] .sui-checkbox__origin-input').check({force:true});
-    //cy.get('.actions> .login-point_button >.page__login_mainButton').eq(2).click() For submission
+    cy.get('.actions> .login-point_button >.page__login_mainButton').eq(2).click() //For submission
     cy.wait(5000);
     //cy.get('.skip > span').click() for skipping the phone number step
     cy.wait(5000);
@@ -457,7 +432,68 @@ Cypress.Commands.add('SignupatFashionovaa', (user) => {
     cy.wait(2000);
     cy.get('input#sign-up-password').type(user.password)
     cy.wait(2000);
-    //cy.get('#sign-up-form-submit-button').click() for submit
+    cy.get('#sign-up-form-submit-button').click() //for submit
     cy.wait(5000);
 })
 
+Cypress.Commands.add('SignupatBurgerKing', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://burgerking.com', {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2'
+        },
+        failOnStatusCode: false
+    });
+    cy.wait(8000)
+    //cy.get('.save-preference-btn-handler').click();
+    //cy.wait(2000);
+    cy.get('[data-testid="mobile-nav-signup-link"] > .r-1awozwy > .css-175oi2r > .css-146c3p1').click()
+    cy.wait(2000);
+    //cy.get('.save-preference-btn-handler').click();
+    cy.wait(1000);
+    cy.get('[data-testid="signin-email-input"]').type(user.email)
+    cy.get('[data-testid="signin-button"]').click();
+    cy.wait(5000);
+    cy.get('[data-testid="signup-name-input"]').type(user.firstname)
+    cy.wait(2000);
+    cy.get('[data-testid="signup-agreeToTermsOfService"] > .css-175oi2r').click()
+    cy.wait(2000);
+    cy.get('[data-testid="signup-button"]').click() //for submit
+    cy.wait(5000);
+})
+
+Cypress.Commands.add('SignupatJustServe', (user) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    // Reset browser storage and set viewport
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.visit('https://www.justserve.org/register', {
+        headers: {
+            'accept': 'application/json, text/plain, */*, text/html',
+            'user-agent': 'axios/0.27.2'
+        },
+        failOnStatusCode: false
+    });
+    cy.wait(8000)
+    cy.get('#js-textbox-firstName').type(user.firstname);
+    cy.get('[data-test="lastName"]').type(user.lastname);
+    cy.get('#js-textbox-postalCode').type(user.zipCode);
+    cy.get('#js-textbox-email').type(user.email);
+    cy.get('[data-test="password"]').type(user.password);
+    cy.get('#js-textbox-confirmPassword').type(user.password);
+    cy.get('[data-test="country"]').click();
+    cy.contains('li', user.country).scrollIntoView().click();
+    cy.get('#js-textbox-country').should('contain', user.country);
+    cy.get('[data-test="createAccountButton"]').click() //for submit
+    cy.wait(5000);
+})
